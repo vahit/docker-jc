@@ -10,7 +10,7 @@ for EACH_CONTAINER in ${CONTAINERS}; do
     CREATED_SINCE=$(date --date="${CREATION_DATE}" +"%s")
     CONTAINER_LIFE_TIME=$((NOW - CREATED_SINCE))
     if [[ ${CONTAINER_LIFE_TIME} -gt $((60*60*${OLDER_THAN})) ]]; then
-        docker rm "${EACH_CONTAINER}"
+        docker rm -f "${EACH_CONTAINER}"
         echo "$(date): ${EACH_CONTAINER} removed." >> ${LOG_FILE}
     fi
 done
